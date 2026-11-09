@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Jelajah Rimba Angka - Ruang Murid</title>
+<style>
+*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}
+html,body{width:100%;height:100%;overflow:hidden;background:#06231f;font-family:"Trebuchet MS","Segoe UI",Tahoma,sans-serif;color:#2b1700;touch-action:manipulation}
+#S{position:absolute;left:50%;top:50%;width:1280px;height:720px;overflow:hidden;background:#0b4f4a}
+.pg{position:absolute;inset:0;opacity:0;visibility:hidden;transform:scale(.96);transition:opacity .45s,transform .45s,visibility .45s;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px}
+.pg.on{opacity:1;visibility:visible;transform:none}
+.bg{background:#0f6b5e url(./assets/latar1.png) center/cover no-repeat}
+.c{background:#fff8e1;border:6px solid #5b3a1e;border-radius:28px;box-shadow:0 10px 0 rgba(0,0,0,.3);padding:28px 36px}
+.t{font-size:58px;font-weight:900;background:#0b4f4a;color:#fff8e1;padding:8px 40px;border-radius:24px;border:5px solid #fff8e1}
+.h{font-size:44px;font-weight:900;margin-bottom:18px}
+.b{font-family:inherit;font-size:34px;font-weight:900;min-height:84px;padding:0 40px;background:#ff9f1c;color:#2b1700;border:5px solid #5b3a1e;border-radius:24px;box-shadow:0 7px 0 #5b3a1e;cursor:pointer}
+.b:active{transform:translateY(5px);box-shadow:0 2px 0 #5b3a1e}
+.b:disabled{opacity:.7}
+.s{font-size:26px;min-height:60px;padding:0 24px}
+.bk{position:absolute;left:24px;top:20px}
+.w{width:560px}
+.sub{font-size:34px;font-weight:800;background:#fff8e1;padding:6px 28px;border-radius:18px}
+input{font-family:inherit;font-size:42px;font-weight:700;width:640px;padding:14px;text-align:center;border:5px solid #5b3a1e;border-radius:18px;user-select:text;-webkit-user-select:text}
+.er{height:36px;font-size:26px;font-weight:800;color:#b3261e;margin:8px 0}
+.li{font-size:30px;line-height:1.4;font-weight:700;width:920px;text-align:left}
+.li p{margin:10px 0}
+.hud{position:absolute;left:20px;right:96px;top:14px;height:76px;background:#0b4f4a;color:#fff8e1;border:5px solid #fff8e1;border-radius:20px;display:flex;align-items:center;justify-content:space-between;padding:0 22px;font-size:26px;font-weight:800}
+.hud #pt{display:flex;align-items:center}
+.hud i{font-style:normal;width:44px;height:44px;border-radius:50%;background:#355;border:3px solid #fff8e1;display:flex;align-items:center;justify-content:center;font-size:24px}
+.hud i.c{background:#ff9f1c;color:#2b1700}.hud i.d{background:#2e9e4f}
+.hud u{width:28px;height:6px;background:#fff8e1}
+#mc{position:absolute;left:60px;right:60px;top:112px;bottom:100px;display:flex;flex-direction:column;justify-content:center;gap:24px}
+.q{font-size:34px;font-weight:700;line-height:1.35;flex:1}
+.os{display:flex;gap:20px}.os .b{flex:1;background:#fff;font-size:40px}
+.row{display:flex;gap:30px;align-items:center}
+.kp{width:330px}.dp{height:72px;border:5px solid #5b3a1e;border-radius:16px;background:#fff;font-size:46px;font-weight:900;text-align:center;line-height:62px;margin-bottom:10px}
+.ky{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.k{min-height:62px;padding:0;font-size:30px;background:#fff}.k.g{background:#2e9e4f;color:#fff;font-size:24px}
+.mt{display:flex;gap:30px}.mt>div{display:flex;flex-direction:column;gap:12px}.mt>div:first-child{flex:1}.mt>div:last-child{width:200px}
+.l,.a{min-height:96px;background:#fff}.l{font-size:25px;text-align:left;padding:0 22px}.a{font-size:40px}
+.sel{outline:6px solid #1565c0;background:#bbdefb!important}
+.ok{background:#2e9e4f!important;color:#fff!important}.no{background:#d93025!important;color:#fff!important;animation:sh .4s}
+#fb{position:absolute;left:60px;right:60px;bottom:20px;height:64px;border-radius:18px;border:4px solid #fff8e1;font-size:28px;font-weight:800;display:flex;align-items:center;justify-content:center;text-align:center}
+.f0{background:#0b4f4a;color:#fff8e1}.f1{background:#1b7a3a;color:#fff;animation:pp .35s}.f2{background:#b3261e;color:#fff;animation:pp .35s}
+#ov{position:absolute;inset:0;background:rgba(0,0,0,.65);display:none;align-items:center;justify-content:center;z-index:5}
+.ctr{text-align:center;font-size:34px;font-weight:800;animation:pp .4s}.ctr h2{font-size:48px;margin-bottom:12px}.ctr p{margin:8px 0}.ctr .b{margin:14px 8px 0}
+.r{display:flex;justify-content:space-between;font-size:32px;font-weight:800;padding:10px 16px;border-bottom:3px dashed #c9a66b}
+.r small{font-size:20px;font-weight:600;margin-left:12px}
+.lt{width:780px;max-height:470px;overflow-y:auto;-webkit-overflow-scrolling:touch}
+#mu{position:absolute;right:20px;top:20px;width:64px;height:64px;border-radius:50%;font-size:30px;z-index:9;padding:0;min-height:0;display:none}
+.hint{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);background:rgba(0,0,0,.7);color:#fff;font-size:24px;font-weight:700;padding:8px 26px;border-radius:30px;animation:bl 1.6s infinite}
+@keyframes sh{25%{transform:translateX(-10px)}75%{transform:translateX(10px)}}
+@keyframes pp{0%{transform:scale(.85)}60%{transform:scale(1.05)}100%{transform:scale(1)}}
+@keyframes bl{50%{opacity:.45}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head>
+<body><div id="S">
+
+<section class="pg on" id="p0" onclick="start()">
+<img src="./assets/cover.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+<div class="hint">sentuh mana saja untuk masuk</div></section>
+
+<section class="pg bg" id="p1"><div class="c" style="text-align:center"><div class="h">Siapa namamu, Petualang?</div>
+<input id="nm" maxlength="18" placeholder="Tulis namamu" autocomplete="off" onkeydown="if(event.key=='Enter')ok1()">
+<p class="er" id="er"></p><button class="b" onclick="ok1()">Lanjut ▶</button></div></section>
+
+<section class="pg bg" id="p2"><div class="t">🌴 Jelajah Rimba Angka</div><div class="sub" id="hi"></div>
+<button class="b w" onclick="go('p3')">🎮 Bermain</button>
+<button class="b w" onclick="lb()">🏆 Papan Peringkat</button>
+<button class="b w" onclick="go('p8')">👤 Pengembang</button>
+<button class="b s" onclick="go('p1')">Ganti nama</button></section>
+
+<section class="pg bg" id="p3"><button class="b s bk" onclick="menu()">◀ Menu</button>
+<div class="t">Cara Bermain</div>
+<div class="c li"><p>🌴 Jelajahi 3 misi: Jembatan Hutan, Gua Harta Karun, dan Gerbang Akhir.</p>
+<p>🧮 Selesaikan soal cerita dengan tambah, kurang, kali, dan bagi.</p>
+<p>❤️ Tiap misi punya 3 nyawa. Jawaban salah mengurangi 1 nyawa.</p>
+<p>⭐ Jawaban benar langsung dapat 10 poin (5 poin jika tadi sempat salah).</p>
+<p>🏆 Selesaikan semua misi agar skormu masuk papan peringkat.</p></div>
+<button class="b" onclick="sm(0)">Mulai Misi 1 ▶</button></section>
+
+<section class="pg bg" id="p4">
+<div class="hud"><span id="hn"></span><span id="pt"></span><span id="hp"></span><span id="sk"></span></div>
+<div class="c" id="mc"></div><div id="fb" class="f0"></div>
+<div id="ov"></div></section>
+
+<section class="pg bg" id="p5"><div class="t">Hasil Akhir</div>
+<div class="c" style="width:780px"><div id="rc"></div><p id="rm" style="font-size:30px;font-weight:800;text-align:center;margin-top:14px"></p></div>
+<button class="b" onclick="skor()">Lihat Skor Akhir ▶</button></section>
+
+<section class="pg bg" id="p6"><div class="t">Skor Akhir</div>
+<div class="c" style="text-align:center;width:780px"><div id="sr" style="font-size:60px"></div>
+<div id="st" style="font-size:120px;font-weight:900;line-height:1.1"></div>
+<div style="font-size:28px;font-weight:800">dari 120 poin</div>
+<p id="rk" style="font-size:28px;font-weight:700;margin-top:10px"></p></div>
+<div style="display:flex;gap:16px"><button class="b" onclick="go('p3')">🔁 Main Lagi</button><button class="b" onclick="lb()">🏆 Peringkat</button><button class="b" onclick="menu()">Menu</button></div></section>
+
+<section class="pg bg" id="p7"><button class="b s bk" onclick="menu()">◀ Menu</button>
+<div class="t">Papan Peringkat</div><div class="c lt" id="lt"></div></section>
+
+<section class="pg bg" id="p8"><button class="b s bk" onclick="menu()">◀ Menu</button>
+<div class="t">Pengembang</div>
+<div class="c" style="display:flex;gap:36px;align-items:center">
+<img id="pf" src="./assets/pengembang.jpg" alt="Foto pengembang" style="width:260px;height:330px;object-fit:cover;object-position:top;border:6px solid #5b3a1e;border-radius:20px;background:#ddd">
+<div style="font-size:34px;font-weight:800;line-height:1.5"><div style="font-size:44px;font-weight:900">Ade Suminarsih, S.Pd.</div>Pengembang gim<br>PKBM Amanah Kita</div></div></section>
+
+<button class="b" id="mu" onclick="tg()" aria-label="Suara">🔊</button>
+</div>
+<script>
+const $=i=>document.getElementById(i),S=$('S');
+const A={b:new Audio('./assets/benar.mp3'),s:new Audio('./assets/salah.mp3'),m:new Audio('./assets/musiklatar.mp3')};
+A.m.loop=true;A.m.volume=.45;
+let on=false,busy=0,mute=false,N='',m=0,hp=3,qi=0,tr=0,lk=false,ms=[0,0,0],cur='p0',mem=[],sel=null,buf='';
+const K='ruangmurid_matematika_petualangan';
+/* Musik latar berhenti saat suara benar/salah/penjelasan (fx) dan lanjut otomatis setelah selesai */
+function mus(){if(on&&!busy&&!mute)A.m.play().catch(()=>{})}
+function fx(k){if(mute)return;const a=A[k];let d=0;const f=()=>{if(d)return;d=1;busy=Math.max(0,busy-1);mus()};busy++;A.m.pause();a.onended=f;a.onerror=f;a.currentTime=0;a.play().catch(f)}
+function tg(){mute=!mute;$('mu').textContent=mute?'🔇':'🔊';mute?A.m.pause():mus()}
+document.addEventListener('visibilitychange',()=>document.hidden?A.m.pause():mus());
+function fit(){S.style.transform='translate(-50%,-50%) scale('+Math.min(innerWidth/1280,innerHeight/720)+')'}
+addEventListener('resize',fit);fit();
+function go(id){$(cur).classList.remove('on');$(id).classList.add('on');cur=id;$('mu').style.display=id=='p0'?'none':'block'}
+function start(){on=true;mus();go('p1')}
+function ok1(){const v=$('nm').value.trim();if(!v){$('er').textContent='Tulis namamu dulu, ya!';return}$('er').textContent='';N=v;menu()}
+function menu(){$('ov').style.display='none';$('hi').textContent='Halo, '+N+'!';go('p2')}
+const ex=['jpeg','png'];$('pf').onerror=function(){const e=ex.shift();if(e)this.src='./assets/pengembang.'+e;else this.style.visibility='hidden'};
+const esc=s=>s.replace(/[&<>"']/g,c=>'&#'+c.charCodeAt(0)+';');
+const f=(n,t)=>(/Rp/.test(t)?'Rp':'')+n.toLocaleString('id-ID');
+const D=[
+{n:'Jembatan Hutan',q:[
+['Rina punya 45 apel. Ia memetik 28 apel lagi. Berapa apel Rina sekarang?',73,[63,73,83]],
+['Pak Tani punya 120 telur. Sebanyak 45 telur terjual. Berapa telur yang tersisa?',75,[85,65,75]],
+['Di kebun ada 236 pohon kelapa dan 154 pohon pisang. Berapa jumlah semua pohon?',390,[390,380,400]],
+['Ibu membawa uang Rp50.000 dan berbelanja Rp37.500. Berapa sisa uang Ibu?',12500,[13500,17500,12500]]]},
+{n:'Gua Harta Karun',q:[
+['6 kantong, tiap kantong berisi 5 koin. Berapa semua koin?',30],
+['24 permata dibagi sama rata ke 4 peti. Berapa permata tiap peti?',6],
+['7 rak, tiap rak berisi 8 buku. Berapa semua buku?',56],
+['45 kue dibagi sama rata untuk 5 anak. Berapa kue tiap anak?',9]]},
+{n:'Gerbang Akhir',q:[
+['Ani membeli 3 buku seharga Rp4.000 per buku. Ia membayar Rp20.000. Berapa rupiah kembaliannya?',8000],
+['48 jeruk dibagi sama rata ke 6 keranjang, lalu tiap keranjang ditambah 5 jeruk. Berapa jeruk di tiap keranjang?',13],
+['Sebuah bus membawa 35 penumpang. Di terminal naik 18 orang dan turun 9 orang. Berapa penumpang sekarang?',44],
+['Ada 4 kotak, tiap kotak berisi 12 pensil. Sebanyak 8 pensil dipakai. Berapa pensil yang tersisa?',40]]}];
+const tot=()=>ms[0]+ms[1]+ms[2];
+function hud(){$('hn').textContent='Misi '+(m+1)+': '+D[m].n+' ('+qi+'/4)';$('hp').textContent='❤️'.repeat(hp)+'🖤'.repeat(3-hp);$('sk').textContent='Skor '+tot();
+$('pt').innerHTML=D.map((_,i)=>'<i class="'+(i<m?'d':i==m?'c':'')+'">'+(i<m?'✔':i+1)+'</i>').join('<u></u>')}
+function fb(t,k){const e=$('fb');e.textContent=t;e.className='';void e.offsetWidth;e.className='f'+k}
+function ov(h){$('ov').innerHTML='<div class="c ctr">'+h+'</div>';$('ov').style.display='flex'}
+function sm(i){m=i;hp=3;qi=0;tr=0;ms[i]=0;lk=false;$('ov').style.display='none';hud();go('p4');q()}
+function q(){lk=false;sel=null;buf='';fb(m==1?'Pilih soal di kiri, lalu pilih jawabannya di kanan.':'Pilih atau ketik jawaban yang benar.',0);$('mc').innerHTML=[r1,r2,r3][m]()}
+function good(){const p=tr?5:10;ms[m]+=p;tr=0;qi++;lk=true;fx('b');hud();fb('Benar! +'+p+' poin ⭐',1);
+setTimeout(()=>{lk=false;if(qi>=4)win();else if(m!=1)q()},1400)}
+function bad(){hp--;tr=1;fx('s');hud();if(hp<1){lk=true;fb('Nyawa habis!',2);setTimeout(fail,1300)}else fb('Belum tepat. Coba lagi, kamu pasti bisa!',2)}
+function win(){const s=ms[m];if(m<2)ov('<h2>🎉 Misi '+(m+1)+' selesai!</h2><p>'+'⭐'.repeat(s>=40?3:s>=30?2:1)+'</p><p>Poin misi: '+s+'/40</p><button class="b" onclick="sm('+(m+1)+')">Lanjut Misi '+(m+2)+' ▶</button>');else fin()}
+function fail(){ov('<h2>😢 Misi belum berhasil</h2><p>Nyawamu habis. Yuk coba lagi!</p><button class="b" onclick="sm(m)">Ulangi Misi</button><button class="b" onclick="menu()">Menu</button>')}
+/* Misi 1: memilih jawaban */
+function r1(){const d=D[0].q[qi];return '<p class="q">'+d[0]+'</p><div class="os">'+d[2].map(o=>'<button class="b" onclick="p1(this,'+o+')">'+f(o,d[0])+'</button>').join('')+'</div>'}
+function p1(e,o){if(lk)return;if(o==D[0].q[qi][1]){e.classList.add('ok');good()}else{e.classList.add('no');e.disabled=true;bad()}}
+/* Misi 2: menjodohkan */
+function r2(){const Q=D[1].q,R=[...Q.keys()].sort(()=>Math.random()-.5);
+return '<div class="mt"><div>'+Q.map((d,i)=>'<button class="b l" id="l'+i+'" onclick="pk(0,'+i+')">'+d[0]+'</button>').join('')+'</div><div>'+R.map(i=>'<button class="b a" id="a'+i+'" onclick="pk(1,'+i+')">'+Q[i][1]+'</button>').join('')+'</div></div>'}
+function pk(s,i){if(lk)return;const e=$((s?'a':'l')+i);if(e.classList.contains('ok'))return;
+if(!s){document.querySelectorAll('.l').forEach(x=>x.classList.remove('sel'));sel=i;e.classList.add('sel');fb('Sekarang pilih jawabannya di sebelah kanan.',0);return}
+if(sel===null){fb('Pilih soal di sebelah kiri dulu.',0);return}
+if(sel===i){[$('l'+i),e].forEach(x=>{x.classList.remove('sel');x.classList.add('ok')});sel=null;good()}
+else{e.classList.add('no');setTimeout(()=>e.classList.remove('no'),600);bad()}}
+/* Misi 3: mengetik jawaban */
+function r3(){const d=D[2].q[qi];return '<div class="row"><p class="q">'+d[0]+'</p><div class="kp"><div class="dp" id="dp">?</div><div class="ky">'+[1,2,3,4,5,6,7,8,9].map(n=>'<button class="b k" onclick="kd('+n+')">'+n+'</button>').join('')+'<button class="b k" onclick="kd(-1)">⌫</button><button class="b k" onclick="kd(0)">0</button><button class="b k g" onclick="kc()">Cek ✔</button></div></div></div>'}
+function kd(n){if(lk)return;buf=n<0?buf.slice(0,-1):(buf+n).slice(0,7);$('dp').textContent=buf||'?'}
+function kc(){if(lk)return;if(!buf){fb('Ketik jawabanmu dulu.',0);return}
+if(+buf==D[2].q[qi][1])good();else{buf='';$('dp').textContent='?';bad()}}
+/* Hasil, skor, dan peringkat lokal */
+function LB(){try{const v=JSON.parse(localStorage.getItem(K));if(Array.isArray(v))return v}catch(e){}return mem}
+function save(e){mem=LB();mem.push(e);try{localStorage.setItem(K,JSON.stringify(mem))}catch(x){}}
+function fin(){const t=tot();save({n:N,s:t,d:Date.now()});$('ov').style.display='none';
+$('rc').innerHTML=D.map((d,i)=>'<div class="r"><span>✔ Misi '+(i+1)+': '+d.n+'</span><b>'+ms[i]+'/40</b></div>').join('');
+$('rm').textContent=t>=100?'Luar biasa! Kamu Jagoan Hitung!':t>=70?'Hebat! Terus berlatih, ya!':'Bagus! Ayo coba lagi untuk skor lebih tinggi!';go('p5')}
+function skor(){const t=tot(),l=LB(),r=l.filter(e=>e.s>t).length+1;$('st').textContent=t;$('sr').textContent='⭐'.repeat(t>=100?3:t>=70?2:1);
+$('rk').textContent=N+', kamu di peringkat '+r+' dari '+l.length+' permainan.';go('p6')}
+function lb(){const l=LB().slice().sort((a,b)=>b.s-a.s||a.d-b.d);
+$('lt').innerHTML=l.length?l.map((e,i)=>'<div class="r"><span>'+(i<3?['🥇','🥈','🥉'][i]:(i+1)+'.')+' '+esc(e.n)+'<small>'+new Date(e.d).toLocaleDateString('id-ID')+'</small></span><b>'+e.s+'</b></div>').join(''):'<p class="q" style="text-align:center">Belum ada pemain. Ayo jadi yang pertama!</p>';go('p7')}
+</script></body></html>
